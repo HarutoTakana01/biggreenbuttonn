@@ -1,0 +1,53 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Big Green Button</title>
+    <style>
+        .big-green-button {
+            width: 300px;
+            height: 100px;
+            background-color: green;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .black-screen {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 9999;
+        }
+
+        .black-screen.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="big-green-button" id="big-green-button"></div>
+    <div class="black-screen" id="black-screen"></div>
+
+    <script>
+        const bigGreenButton = document.getElementById("big-green-button");
+        const blackScreen = document.getElementById("black-screen");
+
+        bigGreenButton.addEventListener("click", function() {
+            blackScreen.classList.add("visible");
+            document.addEventListener("mousedown", function(e) {
+                if (e.button === 1) { // Right click
+                    blackScreen.classList.remove("visible");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
